@@ -97,3 +97,4 @@ function flowJS(){
         return des;
     }
 }
+module.exports = flowJS;
