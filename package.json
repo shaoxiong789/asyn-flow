@@ -1,6 +1,6 @@
 {
   "name": "asyn-flow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "流程控制框架",
   "main": "index.js",
   "scripts": {
