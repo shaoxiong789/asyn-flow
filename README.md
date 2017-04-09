@@ -18,6 +18,7 @@
 
 9、可以在任何时候知道当前代码流程运行过的轨迹，如flowJS.trace，这对于了解页面的执行过程会比较有帮助。
 
+```js
 flowJS({
     init:function(){
         this.setNext('步骤A').setNext('步骤B').setNext('步骤C');
@@ -45,3 +46,4 @@ flowJS({
         console.log(this.stepData('name1')); //打印结果：undefined
     }
 });
+```
