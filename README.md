@@ -17,3 +17,31 @@
 8、有些步骤能并行执行，并且要都执行完才能执行下一步，如 this.setNext('步骤A').setNext([步骤B1,步骤B2,步骤B3]).setNext('步骤C')。
 
 9、可以在任何时候知道当前代码流程运行过的轨迹，如flowJS.trace，这对于了解页面的执行过程会比较有帮助。
+
+flowJS({
+    init:function(){
+        this.setNext('步骤A').setNext('步骤B').setNext('步骤C');
+        this.next();
+    },
+    '步骤A':function(){
+		var self = this;
+		setTimeout(function(){
+			console.log('步骤A 传入参数：');
+			self.nextData({name1:'value1', name2:'value2'});
+        	self.next();
+		},3000);
+    },
+    '步骤B':function(){
+        console.log('步骤B 获取上一步传来的数据：');
+        console.log(this.stepData()); //打印结果：Object {name1: "value1", name2: "value2"}
+        console.log('步骤B 获取上一步传来的属性name1的值：');
+        console.log(this.stepData('name1')); //打印结果：value1
+        this.next();
+    },
+    '步骤C':function(){
+        console.log('步骤C 获取上一步传来的数据：');
+        console.log(this.stepData()); //打印结果：Object {}
+        console.log('步骤C 获取上一步传来的属性name1的值：');
+        console.log(this.stepData('name1')); //打印结果：undefined
+    }
+});
